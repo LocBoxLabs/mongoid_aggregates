@@ -4,7 +4,7 @@ class Offer
 
   field :offer_id, type: Integer
   field :business_id, type: Integer
-  field :date, type: Time
+  field :date, type: String
   field :type, type: String
 
   validates_presence_of :business_id, :offer_id

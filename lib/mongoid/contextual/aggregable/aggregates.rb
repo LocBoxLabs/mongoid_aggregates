@@ -47,6 +47,11 @@ module Mongoid
           if @context.scopes.has_key?(name)
             criteria = @context.scopes[name][:scope].call(args)
             @commands.push(to_match(criteria))
+          elsif @context.respond_to?(name)
+            criteria = @context.send(name, *args)
+            @commands.push(to_match(criteria))
+          else
+            raise Errors::UnknownAttribute.new(@context, name)
           end
           self
         end

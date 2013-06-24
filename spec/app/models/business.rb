@@ -14,6 +14,7 @@ class Business
   embeds_one :facebook_stats, class_name: 'FacebookStats'
   embeds_one :billings, class_name: 'Billings'
   embeds_one :subscription
+  embeds_one :subscribers, class_name: 'BusinessSubscribers'
 
   accepts_nested_attributes_for :facebook_stats, :billings
 
@@ -61,4 +62,31 @@ class Subscription
   field :setup_fee_charged_at, type: Time
   field :monthly_subscription_fee, type: Float
   field :last_status_update, type: Time
+end
+
+class BusinessSubscribers
+  include Mongoid::Document
+  embedded_in :business
+
+  field :_id, type: String, default: nil
+
+  embeds_one :daily, class_name: 'BusinessSubscribersPeriod'
+  embeds_one :monthly, class_name: 'BusinessSubscribersPeriod'
+  embeds_one :alltime, class_name: 'BusinessSubscribersPeriod'
+end
+
+
+class BusinessSubscribersPeriod
+  include Mongoid::Document
+  embedded_in :business_subscribers
+
+  field :_id, type: String, default: nil
+  field :email_count, type: Integer
+  field :active_count, type: Integer
+  field :facebook_fan_count, type: Integer
+  field :phone_number_count, type: Integer
+  field :emails_collected_from_widget, type: Integer
+  field :spam_count, type: Integer
+  field :optout_count, type: Integer
+  field :hardbounce_count, type: Integer
 end
