@@ -14,6 +14,7 @@ class MonthlyBusinessBilling
   accepts_nested_attributes_for :billings, :subscription
 
   scope :with_subscription_status, ->(status){ where('subscription.status' => status) }
+  scope :for_month, ->(date_str){ where('date' => date_str) }
 end
 
 

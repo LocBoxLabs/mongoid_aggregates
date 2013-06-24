@@ -14,7 +14,8 @@ class Offer
 
   accepts_nested_attributes_for :stats, :reservations
 
-  scope :with_subscription_status, ->(status) { where('subscription.status' => status) }
+  scope :for_date, ->(date_str){ where('date' => date_str) }
+  scope :with_type, ->(type){ where('type' => type) }
 end
 
 class OfferStats

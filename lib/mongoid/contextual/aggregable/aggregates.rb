@@ -37,6 +37,14 @@ module Mongoid
           }
         end
 
+        def compute(field)
+          res = all.inject(Hash.new 0) {
+              |compute, item| compute[:count] += 1; compute[:sum] += item["#{field}"]; compute
+          }
+          res[:avg] = res[:sum] / (res[:count] != 0 ? res[:count] : 1 )
+          res
+        end
+
         def count
           all.count
         end
