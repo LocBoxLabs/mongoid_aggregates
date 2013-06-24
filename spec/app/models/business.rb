@@ -2,7 +2,7 @@ class Business
   include Mongoid::Document
   include Mongoid::Contextual::Aggregable::Mongo
 
-  field :created_at, type: Time, default: ->{ Time.now }
+  field :created_at, type: Time, default: -> { Time.now }
   field :date, type: String
   field :facebook_connected, type: Boolean, default: false
   field :name, type: String
@@ -14,7 +14,7 @@ class Business
   embeds_one :facebook_stats, class_name: 'FacebookStats'
   embeds_one :billings, class_name: 'Billings'
   embeds_one :subscription
-  embeds_one :subscribers, class_name: 'BusinessSubscribers'
+  embeds_one :subscribers, class_name: 'Subscribers'
 
   accepts_nested_attributes_for :facebook_stats, :billings
 
@@ -64,21 +64,21 @@ class Subscription
   field :last_status_update, type: Time
 end
 
-class BusinessSubscribers
+class Subscribers
   include Mongoid::Document
   embedded_in :business
 
   field :_id, type: String, default: nil
 
-  embeds_one :daily, class_name: 'BusinessSubscribersPeriod'
-  embeds_one :monthly, class_name: 'BusinessSubscribersPeriod'
-  embeds_one :alltime, class_name: 'BusinessSubscribersPeriod'
+  embeds_one :daily, class_name: 'SubscribersPeriod'
+  embeds_one :monthly, class_name: 'SubscribersPeriod'
+  embeds_one :alltime, class_name: 'SubscribersPeriod'
 end
 
 
-class BusinessSubscribersPeriod
+class SubscribersPeriod
   include Mongoid::Document
-  embedded_in :business_subscribers
+  embedded_in :subscribers
 
   field :_id, type: String, default: nil
   field :email_count, type: Integer
@@ -90,3 +90,5 @@ class BusinessSubscribersPeriod
   field :optout_count, type: Integer
   field :hardbounce_count, type: Integer
 end
+
+
