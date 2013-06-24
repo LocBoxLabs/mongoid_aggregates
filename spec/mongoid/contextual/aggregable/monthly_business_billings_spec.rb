@@ -20,7 +20,8 @@ describe MonthlyBusinessBilling do
 
   it "should find number of active subscriptions" do
     MonthlyBusinessBilling.aggregates.with_subscription_status(:active).group('$subscription.subscription_id', 'business' => {'$last' => '$business_id'}).count.should eq(
-                                                                                                                                                                           MonthlyBusinessBilling.with_subscription_status(:active).count)
+                                                                                                                                                                           MonthlyBusinessBilling.with_subscription_status(:active).all.uniq { |b| b.subscription.subscription_id }.count
+                                                                                                                                                                           )
   end
   it "should calculate active MRR" do
     res = {}
