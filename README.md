@@ -30,6 +30,7 @@ Translates to:
 
 
 
+
 <i><b>Business.aggregates.where('subscription.status' => 'active' ).group('subscription.type', count: {'$sum' => 1}).all</i></b>
 
 Translates to:
@@ -44,14 +45,21 @@ Translates to:
 ]
 
 
-Same as the previous exmaple, only this time using scopes
+
 
 <i><b>Business.aggregates.with_subscription_status(:active).group('subscription.type', count: {'$sum' => 1}).all</i></b>
 
+Same as the previous exmaple, only this time using scopes
+
+
+
+
+<i><b>Business.aggregates.with_subscription_status(:delinquent).group(nil).count</i></b>
 
 Count the number of businesses with a delinquent subscription
 
-<i><b>Business.aggregates.with_subscription_status(:delinquent).group(nil).count</i></b>
+
+
 
 Compatibility
 -------------
