@@ -9,6 +9,12 @@ Installation
 gem install 'mongoid_aggregates'
 
 
+Highlights
+-----------
+
+1. Unleashes Mongo's aggregation framework functionality ($group, $match, $sort)
+2. Works seamlessly with Mongoid's querying syntax (querying, scoping etc.)
+
 Examples
 --------
 
@@ -37,6 +43,19 @@ translates to:
   }
 ]
 
+Same as the previous exmaple, only this time using scopes
+
+<i>Business.aggregates.with_subscription_status(:active).group('subscription.type', count: {'$sum' => 1}).all</i>
+
+
+
+
+Business.aggregates.with_subscription_status(:delinquent).group(nil).count
+
+Compatibility
+-------------
+
+Tested with Mongoid 3.1.4
 
 License
 --------
