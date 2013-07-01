@@ -20,7 +20,7 @@ Examples
 
 <i><b>Business.aggregates.group('$business_id', count: {'$sum' => '$subscribers.monthly.email_count'}).all</i></b>
 
-translates to:
+Translates to:
 
 [
   {
@@ -30,9 +30,9 @@ translates to:
 
 
 
-Business.aggregates.where('subscription.status' => 'active' ).group('subscription.type', count: {'$sum' => 1}).all
+<i><b>Business.aggregates.where('subscription.status' => 'active' ).group('subscription.type', count: {'$sum' => 1}).all</i></b>
 
-translates to:
+Translates to:
 
 [
   {
@@ -43,14 +43,15 @@ translates to:
   }
 ]
 
+
 Same as the previous exmaple, only this time using scopes
 
-<i>Business.aggregates.with_subscription_status(:active).group('subscription.type', count: {'$sum' => 1}).all</i>
+<i><b>Business.aggregates.with_subscription_status(:active).group('subscription.type', count: {'$sum' => 1}).all</i></b>
 
 
+Count the number of businesses with a delinquent subscription
 
-
-Business.aggregates.with_subscription_status(:delinquent).group(nil).count
+<i><b>Business.aggregates.with_subscription_status(:delinquent).group(nil).count</i></b>
 
 Compatibility
 -------------
