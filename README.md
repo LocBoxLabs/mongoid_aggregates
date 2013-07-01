@@ -13,7 +13,7 @@ Highlights
 -----------
 
 1. Unleashes Mongo's aggregation framework functionality ($group, $match, $sort)
-2. Works seamlessly with Mongoid's querying syntax (querying, scoping etc.)
+2. Works seamlessly with Mongoid's querying syntax (where clause, scoping etc.)
 
 Examples
 --------
