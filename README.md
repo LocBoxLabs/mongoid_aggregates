@@ -9,7 +9,7 @@ Installation
 gem install 'mongoid_aggregates'
 
 
-Samples
+Examples
 --------
 
 Business.aggregates.group('$business_id', count: {'$sum' => '$subscribers.monthly.email_count'}).all
