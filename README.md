@@ -18,7 +18,7 @@ Highlights
 Examples
 --------
 
-Business.aggregates.group('$business_id', count: {'$sum' => '$subscribers.monthly.email_count'}).all
+<i><b>Business.aggregates.group('$business_id', count: {'$sum' => '$subscribers.monthly.email_count'}).all</i></b>
 
 translates to:
 
