@@ -5,7 +5,7 @@ module Mongoid
   module Contextual
     module Aggregable
       # Contains behaviour for aggregating values in Mongo.
-      module Mongo
+      module MongoEx
         extend ActiveSupport::Concern
 
         module ClassMethods

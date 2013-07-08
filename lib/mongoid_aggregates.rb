@@ -1,1 +1,1 @@
-require 'mongoid/contextual/aggregable/mongo'
+require 'mongoid/contextual/aggregable/mongo_ex'

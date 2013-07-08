@@ -1,6 +1,6 @@
 class Business
   include Mongoid::Document
-  include Mongoid::Contextual::Aggregable::Mongo
+  include Mongoid::Contextual::Aggregable::MongoEx
 
   field :created_at, type: Time, default: -> { Time.now }
   field :date, type: String
@@ -19,6 +19,9 @@ class Business
   accepts_nested_attributes_for :facebook_stats, :billings
 
   scope :with_subscription_status, ->(status) { where('subscription.status' => status) }
+  scope :for_date, ->(date) {
+    date = date.is_a?(Time) ? date.strftime('%Y-%m-%d') : date; where(:date => date)
+  }
 end
 
 class FacebookStats

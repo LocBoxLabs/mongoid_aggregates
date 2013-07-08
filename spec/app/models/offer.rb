@@ -1,6 +1,6 @@
 class Offer
   include Mongoid::Document
-  include Mongoid::Contextual::Aggregable::Mongo
+  include Mongoid::Contextual::Aggregable::MongoEx
 
   field :offer_id, type: Integer
   field :business_id, type: Integer
@@ -14,8 +14,12 @@ class Offer
 
   accepts_nested_attributes_for :stats, :reservations
 
-  scope :for_date, ->(date_str){ where('date' => date_str) }
-  scope :with_type, ->(type){ where('type' => type) }
+  scope :for_date, ->(date) {
+    date = date.is_a?(Time) ? date.strftime('%Y-%m-%d') : date; where(:date => date)
+  }
+  scope :of_type, ->(type){
+    where('type' => type)
+  }
 end
 
 class OfferStats

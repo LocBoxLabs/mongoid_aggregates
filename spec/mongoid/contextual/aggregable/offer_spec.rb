@@ -72,7 +72,7 @@ describe Offer do
               total_revenue: r.rand(100)
           }
       )
-      offer.save
+      offer.save!
     end
   end
 

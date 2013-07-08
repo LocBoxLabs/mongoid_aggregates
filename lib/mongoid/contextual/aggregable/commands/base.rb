@@ -11,8 +11,10 @@ module Mongoid
 
           protected
           def normalize_id(key)
-            if (key.present?)
+            if (key.present? && (key.is_a?(String) || key.is_a?(Symbol)))
               key.to_s =~ /^\$.+/ ? key : "$#{key}"
+            elsif key.is_a?(Hash)
+              key
             else
               'null'
             end
