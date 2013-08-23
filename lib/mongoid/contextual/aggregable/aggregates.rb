@@ -3,6 +3,7 @@ require_relative "commands/match"
 require_relative "commands/group"
 require_relative "commands/sort"
 require_relative "commands/project"
+require_relative "commands/limit"
 
 module Mongoid
   module Contextual
