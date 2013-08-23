@@ -33,6 +33,11 @@ module Mongoid
           self
         end
 
+        def limit(*args)
+          @commands.push(Commands::Limit.new(*args))
+          self
+        end
+
         def explain
           @commands.to_json
         end
