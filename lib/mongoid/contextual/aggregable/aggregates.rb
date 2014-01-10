@@ -34,6 +34,11 @@ module Mongoid
           self
         end
 
+        def or(*args)
+          @commands.push(Commands::Or.new(*args))
+          self
+        end
+
         def limit(*args)
           @commands.push(Commands::Limit.new(*args))
           self
