@@ -4,7 +4,7 @@ module Mongoid
       module Commands
         class Project < Base
           def initialize(*args)
-            super('$project', *args)
+            self['$match'] = { '$or' => args }
           end
         end
       end
