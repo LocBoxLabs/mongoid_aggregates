@@ -43,3 +43,4 @@ coverage/
 .ruby-version
 .ruby-gemset
 app/assets/stylesheets/*/*.css
+mongoid_aggregates*

@@ -5,6 +5,7 @@ require_relative "commands/sort"
 require_relative "commands/project"
 require_relative "commands/limit"
 require_relative "commands/or"
+require_relative "commands/unwind"
 
 module Mongoid
   module Contextual
@@ -42,6 +43,11 @@ module Mongoid
 
         def limit(*args)
           @commands.push(Commands::Limit.new(*args))
+          self
+        end
+
+        def unwind(field)
+          @commands.push(Commands::Unwind.new(field))
           self
         end
 
